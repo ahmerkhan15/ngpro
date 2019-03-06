@@ -14,8 +14,9 @@ export class AuthServiceService {
     return this.http.post(this.baseUrl+'Auth/Login',model).pipe(
       map((response:any)=> {
         const user = response;
+        console.log(user);
         if(user){
-          localStorage.setItem('token',user.token);
+          localStorage.setItem('sessiontoken',user.token);
         }
       })
     );
