@@ -1,0 +1,10 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="1%" fxLayoutGapAlign="center">
+    <div routerLink="/itemDetail/{{item.prodID}}" *ngFor="let item of items" fxFlex="15%" class="card">
+        <img src="{{item.images[0]}}" alt="Denim Jeans" style="max-width: 200px; height: 100px;">
+        <h1 >{{item.name}}</h1>
+        <p class="price">${{item.price}}</p>
+
+        <p><button>Add to Cart</button></p>
+      </div>
+
+</div>

@@ -1,0 +1,14 @@
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\bin\Debug\netcoreapp2.2\GamingStore.API.deps.json
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\bin\Debug\netcoreapp2.2\GamingStore.API.runtimeconfig.json
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\bin\Debug\netcoreapp2.2\GamingStore.API.runtimeconfig.dev.json
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\bin\Debug\netcoreapp2.2\GamingStore.API.dll
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\bin\Debug\netcoreapp2.2\GamingStore.API.pdb
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\obj\Debug\netcoreapp2.2\GamingStore.API.csproj.CoreCompileInputs.cache
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\obj\Debug\netcoreapp2.2\GamingStore.API.RazorAssemblyInfo.cache
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\obj\Debug\netcoreapp2.2\GamingStore.API.RazorAssemblyInfo.cs
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\obj\Debug\netcoreapp2.2\GamingStore.API.AssemblyInfoInputs.cache
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\obj\Debug\netcoreapp2.2\GamingStore.API.AssemblyInfo.cs
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\obj\Debug\netcoreapp2.2\GamingStore.API.RazorTargetAssemblyInfo.cache
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\obj\Debug\netcoreapp2.2\GamingStore.API.dll
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\obj\Debug\netcoreapp2.2\GamingStore.API.pdb
+E:\Gaming_Store\Application\GamingStore.API\GamingStore.API\obj\Debug\netcoreapp2.2\GamingStore.API.csprojAssemblyReference.cache

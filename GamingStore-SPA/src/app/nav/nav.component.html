@@ -1,0 +1,32 @@
+
+<header>
+<div >
+    <mat-toolbar color="primary">
+        <!-- <div fxShow="true" fxHide.gt-sm="true"> -->
+            <!-- <mat-icon class="example-icon" (click)="sidenav.toggle()">menu</mat-icon>   -->
+        <!-- </div> -->
+    <mat-icon  class="">videogame_asset</mat-icon>
+      <span routerLink="/">Gaming Store</span>
+      <span class="example-spacer"></span>
+      <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+      <!-- <div fxShow="true" fxHide.lt-md="true" *ngIf="categoriesList"> -->
+      <div *ngIf="categoriesList"> 
+        <a routerLink="/items/{{cat.catID}}" *ngFor="let cat of categoriesList" mat-button>{{cat.name}}</a>  
+      </div>
+      
+      <mat-icon matBadge="{{cartCount}}" id="cartBadge" matBadgeColor="warn">shopping_cart</mat-icon>
+      <button *ngIf="LoggedIn()" class="example-icon" mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>account_box</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button (click)="Logout()" mat-menu-item>
+            <mat-icon>power_settings_new</mat-icon>
+            <span >Logout</span>
+          </button>
+        </mat-menu>
+      <div *ngIf="!LoggedIn()">
+        <mat-icon routerLink="/login" class="example-icon">exit_to_app</mat-icon>
+      </div>
+    </mat-toolbar>
+  </div>
+</header>
