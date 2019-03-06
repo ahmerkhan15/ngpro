@@ -45,6 +45,14 @@ namespace GamingStore.API.Controllers
             return await _context.Create(cat);
         }
 
+        [HttpPost]
+        [Route("PostProductRange")]
+        public async Task<List<Products>> PostRange([FromBody]List<Products> products)
+        {
+
+            return await _context.CreateRange(products);
+        }
+
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(string id, [FromBody]Products catIn)
         {

@@ -38,6 +38,12 @@ namespace GamingStore.API.Services
             return obj;
         }
 
+        public async Task<List<Products>> CreateRange(List<Products> obj)
+        {
+            await _products.InsertManyAsync(obj);
+            return obj;
+        }
+
         public async Task Update(string id, Products bookIn)
         {
             await _products.ReplaceOneAsync(x => x.prodID == id, bookIn);
