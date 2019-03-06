@@ -8,8 +8,8 @@ namespace GamingStore.API.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string ordeItemID { get; set; }
-        public int orderID { get; set; }
-        public int prodID { get; set; }
+        public string orderID { get; set; }
+        public string prodID { get; set; }
         public decimal quantity { get; set; }
     }
 }

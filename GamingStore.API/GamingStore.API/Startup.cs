@@ -37,6 +37,7 @@ namespace GamingStore.API
             services.AddScoped<StatusService>();
             services.AddScoped<UsersService>();
             services.AddScoped<AuthService>();
+            services.AddScoped<CartService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {

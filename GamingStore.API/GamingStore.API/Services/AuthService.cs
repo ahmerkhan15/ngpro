@@ -1,10 +1,6 @@
-﻿using GamingStore.API.DTO;
-using GamingStore.API.Models;
+﻿using GamingStore.API.Models;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GamingStore.API.Services
