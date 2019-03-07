@@ -1,3 +1,12 @@
-<p>
-  cart works!
-</p>
+<div *ngIf="cart">
+<p-dataView [value]="cart.cartItem">
+  <ng-template let-car pTemplate="listItem">
+      <div>
+          {{car.productID}}
+      </div>
+  </ng-template>
+
+</p-dataView>
+</div>
+
+{{cart.cartItem.length}}

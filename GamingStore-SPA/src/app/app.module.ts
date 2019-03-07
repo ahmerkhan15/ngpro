@@ -9,6 +9,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {MaterialModule} from '../app/material';
+import {ngPrimeModule} from '../app/ngPrime';
+import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
+import {MenuItem} from 'primeng/api';                 //api
+
 import { NavComponent } from './nav/nav.component'
 import { ItemsComponent } from './items/items.component';
 import { HomeComponent } from './home/home.component';
@@ -34,7 +38,8 @@ import { CartComponent } from './cart/cart.component';
     HttpClientModule,
     FormsModule,
     RouterModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ngPrimeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
