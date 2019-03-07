@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataserviceService } from '../services/dataservice.service';
+import { CartserviceService } from '../services/cartservice.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -10,12 +11,13 @@ import {ActivatedRoute} from '@angular/router';
 export class NavComponent implements OnInit {
   cartCount:any;
 
-  constructor(private data:DataserviceService,private route: ActivatedRoute) { }
+  constructor(private data:DataserviceService,private cartServ:CartserviceService,private route: ActivatedRoute) { }
   categoriesList:any;
 
   ngOnInit() {
     this.data.GetCategories().subscribe(x=> {this.categoriesList=x; });
-    this.cartCount=2;
+    // this.cartCount =localStorage.getItem('cartCount') || 0;
+    this.cartServ.cartCount.subscribe(x=> {this.cartCount = x;});
   }
   LoggedIn(){
     const user= localStorage.getItem('sessiontoken');

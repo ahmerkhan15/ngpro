@@ -13,7 +13,7 @@ import {AddToCartDTO} from '../DTO/AddToCartDTO'
 export class ItemsComponent implements OnInit {
   category:object;
   items:any;
-  selectedItem:any;  
+  selectedItem:any;
   
   constructor(private data:DataserviceService, private cartservice:CartserviceService, private route: ActivatedRoute) {}
   
@@ -27,17 +27,10 @@ export class ItemsComponent implements OnInit {
   AddToCart(item):void{
     event.stopPropagation();
     this.selectedItem = item;
-    console.log(this.selectedItem);     
-    // this.atc.prodID ="";// this.selectedItem.prodID;
-    //this.atc.quantity = 1;
-    // this.atc.price = this.selectedItem.price;
-    // this.atc.sessionID = this.selectedItem.prodID;
-     //this.atc.cstID = "";
      var browserID = this.GenerateUniqueBrowserID();
-     console.log(browserID);
      this.cartservice.AddToCart({prodID: this.selectedItem.prodID,quantity:1,price:this.selectedItem.price,sessionID:browserID, cstID:""}).subscribe(
-      next=> {console.log('Logged in successfully');
-    },error=> {console.log('failed to login')}
+      next=> {alert('Added to cart'); console.log(next);
+    },error=> {alert('something went wrong');}
       )
   }
 
