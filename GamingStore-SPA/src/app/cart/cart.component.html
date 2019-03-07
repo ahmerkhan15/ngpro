@@ -1,5 +1,5 @@
 
-<div class="ui-g">
+<div class="ui-g" >
   <div class="ui-g-12 ui-md-8">
     <p-dataView #dv *ngIf="cart" [value]="cart.cartItem" [paginator]="cart.cartItem.length>10" [rows]="10" paginatorPosition="both" filterBy="name"
       [sortField]="sortField" [sortOrder]="sortOrder">
@@ -69,7 +69,7 @@
     
     </p-dataView>
   </div>
-  <div class="ui-g-12 ui-md-4">
+  <div class="ui-g-12 ui-md-4" *ngIf="cart" >
     <p-card header="Order Summary" [style]="{width: '360px'}">
       <div class="ui-g bold">
         <div class="ui-g-12 ui-md-4">Order# : </div>

@@ -16,18 +16,17 @@ import {InputTextModule} from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
 
 @NgModule({
-    imports: [InputTextModule,PasswordModule,DataViewModule,PanelModule,DialogModule,TabViewModule,CodeHighlighterModule,MessagesModule,MessagesModule,MessageModule],
-    exports: [InputTextModule,PasswordModule,DataViewModule,DataViewModule,PanelModule,DialogModule,TabViewModule,CodeHighlighterModule,MessagesModule,MessageModule]
     imports: [DataViewModule,
         PanelModule,
         DialogModule,
         TabViewModule,
-        CodeHighlighterModule, DataTableModule, TableModule, ButtonModule, DropdownModule, CardModule],
+        CodeHighlighterModule, DataTableModule, TableModule, ButtonModule, DropdownModule, CardModule,InputTextModule,PasswordModule,DataViewModule,PanelModule,DialogModule,TabViewModule,CodeHighlighterModule,MessagesModule,MessagesModule,MessageModule],
     exports: [DataViewModule, DataViewModule,
         PanelModule,
         DialogModule,
         TabViewModule,
-        CodeHighlighterModule, DataTableModule, TableModule, ButtonModule, DropdownModule, CardModule]
+        CodeHighlighterModule, DataTableModule, TableModule, ButtonModule, DropdownModule, CardModule,InputTextModule,PasswordModule,DataViewModule,DataViewModule,PanelModule,DialogModule,TabViewModule,CodeHighlighterModule,MessagesModule,MessageModule]
+ 
 })
 export class ngPrimeModule {
 
