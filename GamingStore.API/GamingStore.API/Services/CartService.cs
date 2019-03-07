@@ -24,7 +24,7 @@ namespace GamingStore.API.Services
 
         public async Task<Orders> GetBySessionId(string sessionId)
         {
-            return  await  _orders.Find(x => x.sessionID == sessionId).FirstOrDefaultAsync();
+            return await _orders.Find(x => x.sessionID == sessionId).FirstOrDefaultAsync();
         }
 
         public async Task<Orders> AddToCart(string prodID, decimal quantity, decimal price, string sessionID, string cstID)
@@ -54,5 +54,17 @@ namespace GamingStore.API.Services
             }
             return objOrder;
         }
+
+        public async Task<Orders> DeleteProductbyProductId(string productId, string orderId)
+        {
+            //Finding the object
+            Orders objOrder = _orders.Find(x => x.orderID == orderId).SingleOrDefault();
+            ///removing the Product from Order items and saving
+            objOrder.items.RemoveAll(x => x.prodID == productId);
+            await _orders.ReplaceOneAsync(e => e.orderID == orderId, objOrder);
+
+            return objOrder;
+        }
+
     }
 }

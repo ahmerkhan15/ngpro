@@ -54,10 +54,23 @@ namespace GamingStore.API.Controllers
             //Attaching Products to CartDto
             foreach (CartItemDTO itemDTO in cartDTO.cartItem)
             {
-                itemDTO.product = await _productService.Get(itemDTO.prodID);
+               var product = await _productService.Get(itemDTO.prodID);
+
+                itemDTO.price = product.price;
+                itemDTO.name = product.name;
+                itemDTO.description = product.description;
+                itemDTO.genre = product.genre;
+                itemDTO.image = product.images.FirstOrDefault();
             }
 
             return cartDTO;
+        }
+
+        [Route("RemoveProductFromCart")]
+        [HttpPost]
+        public async Task<Orders> RemoveProductFromCart([FromBody]CartRemoveDTO cartRemoveDTO)
+        {
+            return await _cartService.DeleteProductbyProductId(cartRemoveDTO.ProductId, cartRemoveDTO.OrderId);
         }
 
         [Route("AddToCart")]

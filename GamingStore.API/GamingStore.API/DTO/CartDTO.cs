@@ -17,6 +17,16 @@ namespace GamingStore.API.DTO
     {
         public string prodID { get; set; }
         public decimal quantity { get; set; }
-        public Products product { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
+        public decimal price { get; set; }
+        public string genre { get; set; }
+        public string image { get; set; }
+    }
+
+    public class CartRemoveDTO
+    {
+        public string OrderId { get; set; }
+        public string ProductId { get; set; }
     }
 }
