@@ -1,12 +1,12 @@
 <div *ngIf="cart">
-<p-dataView [value]="cart.cartItem">
-  <ng-template let-car pTemplate="listItem">
-      <div>
-          {{car.productID}}
-      </div>
-  </ng-template>
-
-</p-dataView>
+  <p-dataTable [hidden]="loading" [value]="cart.cartItems" selectionMode="single" sortField="Status" [sortOrder]="-1">
+    <p-column field="FileName" header="Naam" sortable="true"></p-column>
+    <p-column field="Status" header="Status" sortable="true">
+      <ng-template let-file="rowData" pTemplate type="body">
+          {{file.Status == 1 ? "Yes" : "No"}}
+      </ng-template>
+    </p-column>
+  </p-dataTable>
 </div>
 
 {{cart.cartItem.length}}
