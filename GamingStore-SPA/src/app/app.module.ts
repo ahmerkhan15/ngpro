@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { LoginComponent } from './login/login.component';
 import { CartComponent } from './cart/cart.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CartComponent } from './cart/cart.component';
     HomeComponent,
     ItemDetailComponent,
     LoginComponent,
-    CartComponent
+    CartComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,7 @@ import { CartComponent } from './cart/cart.component';
     MaterialModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     FlexLayoutModule,
     ngPrimeModule

@@ -22,5 +22,12 @@ namespace GamingStore.API.Services
             if (obj == null) { return null; }
             return obj;
         }
+
+        public async Task<string> SignUp(string userName,string password,string firstName,string lastName,int postalCode,string address,string cellphone, string email)
+        {
+            var user = new Users() { userName = userName, fName = firstName ,lName = lastName, password = password,postalCode=postalCode,address=address,cellphone=cellphone,email=email};
+            await _users.InsertOneAsync(user);
+            return user.userID;
+        }
     }
 }

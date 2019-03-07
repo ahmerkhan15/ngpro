@@ -10,8 +10,14 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card'
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {InputTextModule} from 'primeng/inputtext';
+import {PasswordModule} from 'primeng/password';
 
 @NgModule({
+    imports: [InputTextModule,PasswordModule,DataViewModule,PanelModule,DialogModule,TabViewModule,CodeHighlighterModule,MessagesModule,MessagesModule,MessageModule],
+    exports: [InputTextModule,PasswordModule,DataViewModule,DataViewModule,PanelModule,DialogModule,TabViewModule,CodeHighlighterModule,MessagesModule,MessageModule]
     imports: [DataViewModule,
         PanelModule,
         DialogModule,

@@ -21,5 +21,13 @@ export class AuthServiceService {
     );
   }
 
+  Signup(model:any){
+    return this.http.post(this.baseUrl+'Auth/Signup',model).pipe(
+      map((response:any)=> {
+        return response;
+      })
+    );
+  }
+
   
 }

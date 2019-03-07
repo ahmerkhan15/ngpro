@@ -1,0 +1,9 @@
+.signup-card {
+    max-width: 400px;
+    margin: auto;
+  }
+  input{
+      padding: 5px;
+      width: 350px;
+      height: 20px;
+  }
