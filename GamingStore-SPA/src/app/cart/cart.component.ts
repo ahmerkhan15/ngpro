@@ -5,55 +5,71 @@ import { SelectItem } from 'primeng/components/common/selectitem';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css',]
 })
 export class CartComponent implements OnInit {
 
-  public cart:{};
+  public cart: any;
+  public sumAmount: number = 0;
+
+
+  cols: any[];
   sortOptions: SelectItem[];
-  sortKey: string;
-  sortField: string;
-
-  sortOrder: number;
-  selectedCar:any;
-  displayDialog:boolean;
-
+  
+      sortKey: string;
+  
+      sortField: string;
+  
+      sortOrder: number;
 
   constructor(private cartservice: CartserviceService) { }
+
 
   ngOnInit() {
     let sessionId = "19212312213";
 
-    this.cartservice.GetCartBySessionId(sessionId).subscribe(item => { this.cart = item; console.log(this.cart); });
+    this.cartservice.GetCartBySessionId(sessionId).subscribe(item => {
+      this.cart = item;
 
-    this.sortOptions = [
-      { label: 'Newest First', value: '!year' },
-      { label: 'Oldest First', value: 'year' },
-      { label: 'Brand', value: 'brand' }
+      for (let i = 0; i < this.cart.cartItem.length; i++) {
+        let item = this.cart.cartItem[i];
+        this.sumAmount += item.price * item.quantity;
+      }
+
+      console.log(this.cart);
+    });
+
+    this.cols = [
+      { field: 'name', header: 'Name' },
+      { field: 'genre', header: 'Genre' },
+      { field: 'price', header: 'Price' },
+      { field: 'quantity', header: 'Quantity' },
+
     ];
-  }
 
-  selectCar(event: Event, car: any) {
-    this.selectedCar = car;
-    this.displayDialog = true;
-    event.preventDefault();
   }
 
   onSortChange(event) {
     let value = event.value;
 
     if (value.indexOf('!') === 0) {
-      this.sortOrder = -1;
-      this.sortField = value.substring(1, value.length);
+        this.sortOrder = -1;
+        this.sortField = value.substring(1, value.length);
     }
     else {
-      this.sortOrder = 1;
-      this.sortField = value;
+        this.sortOrder = 1;
+        this.sortField = value;
     }
+}
+
+  removeItem(item, orderId) {
+   
+    this.cartservice.RemoveProductFromCart(item.prodID, orderId).subscribe(order=>{
+      const index = this.cart.cartItem.findIndex(product => product.prodID === item.prodID);
+      this.cart.cartItem.splice(index, 1);
+    });
   }
 
-  onDialogHide() {
-    this.selectedCar = null;
-  }
+
 
 }

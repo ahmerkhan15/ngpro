@@ -1,12 +1,100 @@
-<div *ngIf="cart">
-  <p-dataTable [hidden]="loading" [value]="cart.cartItems" selectionMode="single" sortField="Status" [sortOrder]="-1">
-    <p-column field="FileName" header="Naam" sortable="true"></p-column>
-    <p-column field="Status" header="Status" sortable="true">
-      <ng-template let-file="rowData" pTemplate type="body">
-          {{file.Status == 1 ? "Yes" : "No"}}
-      </ng-template>
-    </p-column>
-  </p-dataTable>
-</div>
 
-{{cart.cartItem.length}}
+<div class="ui-g">
+  <div class="ui-g-12 ui-md-8">
+    <p-dataView #dv *ngIf="cart" [value]="cart.cartItem" [paginator]="cart.cartItem.length>10" [rows]="10" paginatorPosition="both" filterBy="name"
+      [sortField]="sortField" [sortOrder]="sortOrder">
+      <p-header>
+        <div class="ui-helper-clearfix">
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-4">
+              <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+            </div>
+            <div class="ui-g-6 ui-md-4 filter-container">
+              <div style="position:relative">
+                <input type="search" pInputText placeholder="Search by Name" (keyup)="dv.filter($event.target.value)">
+              </div>
+            </div>
+            <div class="ui-g-6 ui-md-4" style="text-align:right">
+              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+          </div>
+        </div>
+      </p-header>
+
+
+      <ng-template let-product pTemplate="listItem">
+        <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+          <div class="ui-g-12 ui-md-3" style="text-align:center">
+            <img src="{{product.image}}" style="height: 100% !important;width: 100% !important;">
+          </div>
+          <div class="ui-g-12 ui-md-8 product-details">
+            <div class="ui-g">
+              <div class="ui-g-2 ui-sm-6">name: </div>
+              <div class="ui-g-10 ui-sm-6">
+                <b>{{product.name}}</b>
+              </div>
+
+              <div class="ui-g-2 ui-sm-6">Price: </div>
+              <div class="ui-g-10 ui-sm-6">
+                <b>{{product.price}}</b>
+              </div>
+
+              <div class="ui-g-2 ui-sm-6">Quantity: </div>
+              <div class="ui-g-10 ui-sm-6">
+                <b>{{product.quantity}}</b>
+              </div>
+
+              <div class="ui-g-2 ui-sm-6">Total: </div>
+              <div class="ui-g-10 ui-sm-6">
+                <b>{{product.quantity * product.price}}</b>
+              </div>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-1 search-icon">
+            <button pButton type="button" (click)="removeItem(product,cart.orderID)" icon="pi pi-trash ui-button-danger "></button>
+
+          </div>
+        </div>
+      </ng-template>
+      <ng-template let-product pTemplate="gridItem">
+        <div style="padding:.5em" class="ui-g-12 ui-md-3">
+          <p-panel [header]="product.name" [style]="{'text-align':'center'}">
+            <img src="{{product.image}}" width="60">
+            <div class="product-detail">{{product.price}} - {{product.quantity}}</div>
+            <hr class="ui-widget-content" style="border-top:0">
+            <button pButton type="button" (click)="removeItem(item,cart.orderID)" icon="pi pi-trash ui-button-danger "></button>
+          </p-panel>
+        </div>
+      </ng-template>
+    
+    </p-dataView>
+  </div>
+  <div class="ui-g-12 ui-md-4">
+    <p-card header="Order Summary" [style]="{width: '360px'}">
+      <div class="ui-g bold">
+        <div class="ui-g-12 ui-md-4">Order# : </div>
+        <div class="ui-g-12 ui-md-4">
+          <b>{{cart.orderID}}</b>
+        </div>
+      </div>
+      <div class="ui-g bold">
+        <div class="ui-g-12 ui-md-4">Item : </div>
+        <div class="ui-g-12 ui-md-4">
+          <b>{{cart.cartItem.length}}</b>
+        </div>
+      </div>
+      <div class="ui-g bold">
+        <div class="ui-g-12 ui-md-4">Total Amount : </div>
+        <div class="ui-g-12 ui-md-4">
+          <b>{{sumAmount}}</b>
+        </div>
+      </div>
+      <div class="ui-g bold">
+        <div class="ui-g-12 ui-md-4">Date : </div>
+        <div class="ui-g-12 ui-md-4">
+          <b>{{cart.date | date:'fullDate' }}</b>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>
