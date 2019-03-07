@@ -22,6 +22,11 @@ namespace GamingStore.API.Services
             //_orderItems = database.GetCollection<OrderItems>("OrderItems");
         }
 
+        public async Task<Orders> GetBySessionId(string sessionId)
+        {
+            return  await  _orders.Find(x => x.sessionID == sessionId).FirstOrDefaultAsync();
+        }
+
         public async Task<Orders> AddToCart(string prodID, decimal quantity, decimal price, string sessionID, string cstID)
         {
             Orders objOrder;
@@ -45,7 +50,7 @@ namespace GamingStore.API.Services
                 //objOrder.customerID = cstID;
                 objOrder.total += price;
                 objOrder.items.Add(new OrderItems { orderID = objOrder.orderID, prodID = prodID, quantity = quantity });
-                await _orders.ReplaceOneAsync(x=> x.sessionID == sessionID, objOrder);
+                await _orders.ReplaceOneAsync(x => x.sessionID == sessionID, objOrder);
             }
             return objOrder;
         }

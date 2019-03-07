@@ -27,6 +27,11 @@ namespace GamingStore.API.Services
             return await _orders.Find(x => x.orderID == id).FirstOrDefaultAsync();
         }
 
+        public async Task<Orders> GetBySessionId(string sessionId)
+        {
+            return await _orders.Find(x => x.sessionID.ToString()== sessionId).FirstOrDefaultAsync();
+        }
+
         public async Task<Orders> Create(Orders obj)
         {
             await _orders.InsertOneAsync(obj);
