@@ -1,0 +1,62 @@
+<mat-card class="signup-card">
+    <mat-card-header>
+      <mat-card-title>Signup</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form  [formGroup]="myForm" (ngSubmit)="submitHandler()">
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                  <input placeholder="First Name" formControlName="firstName">
+                </td>
+              </tr>
+              <tr>
+                  <td>
+                    <input placeholder="Last Name" formControlName="lastName">
+                  </td>
+                </tr>
+          <tr>
+            <td>
+              <input placeholder="Username" formControlName="userName">
+            </td>
+          </tr>
+          <tr>
+              <td>
+                <input placeholder="Email" formControlName="email">
+              </td>
+            </tr>
+          <tr>
+          <td>
+            <input placeholder="Password" type="password" formControlName="password">
+          </td>
+        </tr>
+        <tr>
+            <td>
+              <input placeholder="Postal Code" formControlName="postalCode">
+            </td>
+          </tr>
+          <tr>
+              <td>
+                <textarea rows="5" cols="50" placeholder="Address" formControlName="address"></textarea>
+              </td>
+            </tr>
+            <tr>
+                <td>
+                  <input placeholder="Phone" formControlName="cellphone">
+                </td>
+              </tr>
+        <tr>
+            <td>
+                <button mat-raised-button [disabled]="myForm.invalid" color="primary">Signup</button>
+                <button routerLink="/login" mat-raised-button color="primary">Login</button>
+                <!-- <button [disabled]="myForm.invalid">Submit Form</button> -->
+            </td>
+          </tr>
+      </table>
+      </form>
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    </mat-card-content>
+    <!-- <mat-card-actions>
+      <button mat-raised-button (click)="login()" color="primary">Login</button>
+    </mat-card-actions> -->
+  </mat-card>

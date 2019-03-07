@@ -14,7 +14,7 @@
         <a routerLink="/items/{{cat.catID}}" *ngFor="let cat of categoriesList" mat-button>{{cat.name}}</a>  
       </div>
       
-      <mat-icon matBadge="{{cartCount}}" id="cartBadge" matBadgeColor="warn">shopping_cart</mat-icon>
+      <mat-icon matBadge="{{cartCount}}" id="cartBadge" routerLink="/signup" matBadgeColor="warn">shopping_cart</mat-icon>
       <button *ngIf="LoggedIn()" class="example-icon" mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>account_box</mat-icon>
         </button>

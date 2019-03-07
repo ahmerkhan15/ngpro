@@ -5,18 +5,14 @@ import { DialogModule } from 'primeng/dialog';
 import { TabViewModule } from 'primeng/tabview';
 import { CodeHighlighterModule } from 'primeng/codehighlighter';
 import { CommonModule } from '@angular/common';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {InputTextModule} from 'primeng/inputtext';
+import {PasswordModule} from 'primeng/password';
 
 @NgModule({
-    imports: [DataViewModule,
-        PanelModule,
-        DialogModule,
-        TabViewModule,
-        CodeHighlighterModule],
-    exports: [DataViewModule,DataViewModule,
-        PanelModule,
-        DialogModule,
-        TabViewModule,
-        CodeHighlighterModule]
+    imports: [InputTextModule,PasswordModule,DataViewModule,PanelModule,DialogModule,TabViewModule,CodeHighlighterModule,MessagesModule,MessagesModule,MessageModule],
+    exports: [InputTextModule,PasswordModule,DataViewModule,DataViewModule,PanelModule,DialogModule,TabViewModule,CodeHighlighterModule,MessagesModule,MessageModule]
 })
 export class ngPrimeModule {
 

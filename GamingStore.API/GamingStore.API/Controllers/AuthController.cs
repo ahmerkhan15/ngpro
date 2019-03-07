@@ -51,5 +51,16 @@ namespace GamingStore.API.Controllers
                 token = tokenHandler.WriteToken(token)
             });
         }
+
+        [Route("Signup")]
+        [HttpPost]
+        public async Task<IActionResult> Signup([FromBody]SignUpDTO obj)
+        {
+            return Ok(new
+            {
+                userID = await _context.SignUp(obj.userName, obj.password, obj.firstName, obj.lastName, obj.postalCode, obj.address, obj.cellphone, obj.email)
+
+            });
+        }
     }
 }
