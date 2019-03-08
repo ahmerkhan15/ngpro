@@ -21,8 +21,9 @@ namespace GamingStore.API.Controllers
             return await _context.Get();
         }
 
+        [Route("GetById")]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Products>> Get(string id)
+        public async Task<ActionResult<Products>> GetById(string id)
         {
             var obj = await _context.Get(id);
             if (obj == null)
