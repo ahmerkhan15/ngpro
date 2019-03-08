@@ -56,11 +56,14 @@ namespace GamingStore.API.Controllers
             {
                var product = await _productService.Get(itemDTO.prodID);
 
-                itemDTO.price = product.price;
-                itemDTO.name = product.name;
-                itemDTO.description = product.description;
-                itemDTO.genre = product.genre;
-                itemDTO.image = product.images.FirstOrDefault();
+                if (product!=null)
+                {
+                    itemDTO.price = product.price;
+                    itemDTO.name = product.name;
+                    itemDTO.description = product.description;
+                    itemDTO.genre = product.genre;
+                    itemDTO.image = product.images.FirstOrDefault();
+                }
             }
 
             return cartDTO;
