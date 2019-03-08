@@ -1,0 +1,205 @@
+<!-- <p-dataTable  *ngIf="orders" [value]="orders">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Date</th>
+      <th>Order #</th>
+      <th>Customer Id</th>
+      <th>Total Items</th>
+      <th>Total Amount</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-order>
+    <tr>
+      <td>{{order.date}}</td>
+      <td>{{order.orderID}}</td>
+      <td>{{order.customerID}}</td>
+      <td>{{order.items?order.items.length:0}}</td>
+      <td>{{order.total}}</td>
+    </tr>
+  </ng-template>
+</p-table> -->
+
+
+<!-- <p-dataTable *ngIf="orders" [value]="orders">
+  <p-column field="date" header="Date" [sortable]="true">
+
+  </p-column>
+  <p-column field="orderID" header="Order #" [sortable]="true"></p-column>
+  <p-column field="customerID" header="Customer Id" [sortable]="true"></p-column>
+  <p-column field="total" header="Amount" [sortable]="true"></p-column>
+</p-dataTable> -->
+<!-- 
+<p-table #dt [value]="orders" [globalFilterFields]="['Age']"  sortMode="multiple">
+    <ng-template pTemplate="caption">
+        <div style="text-align: right">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                style="width:auto">
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Date</th>
+            <th>Order #</th>
+            <th>Customer Id</th>
+            <th>Total Items</th>
+            <th>Total Amount</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-order>
+        <tr>
+            <td>{{order.date}}</td>
+            <td>{{order.orderID}}</td>
+            <td>{{order.customerID}}</td>
+            <td>{{order.items?order.items.length:0}}</td>
+            <td>{{order.total}}</td>
+        </tr>
+    </ng-template>
+</p-table> -->
+
+
+
+
+<p-table *ngIf="orders" [columns]="cols" [value]="orders" sortMode="multiple" #dt [paginator]="orders.length>10" [rows]="10">
+  <ng-template pTemplate="caption">
+    Orders List
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th [pSortableColumn]="date">
+        Date
+      </th>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+        {{col.header}}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+      <th>Actions</th>
+    </tr>
+    <tr>
+      <th>
+      </th>
+      <th *ngFor="let col of columns" [ngSwitch]="col.field">
+        <input pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+      </th>
+      <th></th>
+    </tr>
+
+  </ng-template>
+  <ng-template pTemplate="body" let-order let-columns="columns">
+    <tr>
+      <td>
+        {{order.date | date:'fullDate' }}
+      </td>
+      <td *ngFor="let col of columns">
+        {{order[col.field]}}
+      </td>
+      <td>
+        <button type="button" (click)="showDetailsDialog(order)" pButton icon="pi pi-info-circle" label="Show"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+
+
+<p-dialog header="Order Details" [(visible)]="displayDetail" [modal]="true" [responsive]="true" [minY]="70" [maximizable]="true"
+  [baseZIndex]="10000">
+
+  <div class="ui-g" *ngIf="selectedOrder">
+    <div class="ui-g-12 ui-md-4">Order# : </div>
+    <div class="ui-g-12 ui-md-4">
+      <b>{{selectedOrder.orderID}}</b>
+    </div>
+  </div>
+  <div class="ui-g" *ngIf="selectedOrder">
+    <div class="ui-g-12 ui-md-4">Total Items : </div>
+    <div class="ui-g-12 ui-md-4">
+      <b>{{selectedOrder.cartItem?selectedOrder.cartItem.length:0}}</b>
+    </div>
+  </div>
+  <div class="ui-g" *ngIf="selectedOrder">
+    <div class="ui-g-12 ui-md-4">Total Amount : </div>
+    <div class="ui-g-12 ui-md-4">
+      <b>{{sumAmount}}</b>
+    </div>
+  </div>
+  <div class="ui-g" *ngIf="selectedOrder">
+    <div class="ui-g-12 ui-md-4">Date : </div>
+    <div class="ui-g-12 ui-md-4">
+      <b>{{selectedOrder.date | date:'fullDate' }}</b>
+    </div>
+  </div>
+
+  <div class="ui-g">
+    <p-dataView #dv *ngIf="selectedOrder" [value]="selectedOrder.cartItem" [paginator]="selectedOrder.cartItem.length>10" [rows]="10"
+      paginatorPosition="both" filterBy="name" [sortField]="sortField" scrollHeight="50vh" [sortOrder]="sortOrder">
+      <p-header>
+        <div class="ui-helper-clearfix">
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-4">
+              <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+            </div>
+            <div class="ui-g-6 ui-md-4 filter-container">
+              <div style="position:relative">
+                <input type="search" pInputText placeholder="Search by Name" (keyup)="dv.filter($event.target.value)">
+              </div>
+            </div>
+            <div class="ui-g-6 ui-md-4" style="text-align:right">
+              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+          </div>
+        </div>
+      </p-header>
+
+
+      <ng-template let-product pTemplate="listItem">
+        <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+          <div class="ui-g-12 ui-md-3" style="text-align:center">
+            <img src="{{product.image}}" class="imageSizing">
+          </div>
+          <div class="ui-g-12 ui-md-8 product-details">
+            <div class="ui-g">
+              <div class="ui-g-2 ui-sm-6">Name: </div>
+              <div class="ui-g-10 ui-sm-6">
+                <b>{{product.name}}</b>
+              </div>
+
+              <div class="ui-g-2 ui-sm-6">Price: </div>
+              <div class="ui-g-10 ui-sm-6">
+                <b>{{product.price}}</b>
+              </div>
+
+              <div class="ui-g-2 ui-sm-6">Quantity: </div>
+              <div class="ui-g-10 ui-sm-6">
+                <b>{{product.quantity}}
+                  <!-- <p-spinner size="30" [(ngModel)]="product.quantity"></p-spinner> -->
+                </b>
+              </div>
+
+              <div class="ui-g-2 ui-sm-6">Total: </div>
+              <div class="ui-g-10 ui-sm-6">
+                <b>{{product.quantity * product.price}}</b>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </ng-template>
+      <ng-template let-product pTemplate="gridItem">
+        <div style="padding:.5em" class="ui-g-12 ui-md-3">
+          <p-panel [header]="product.name" [style]="{'text-align':'center'}">
+            <img src="{{product.image}}" width="60">
+            <div class="product-detail">{{product.price*product.quantity}}</div>
+            <hr class="ui-widget-content" style="border-top:0">
+          </p-panel>
+        </div>
+      </ng-template>
+
+    </p-dataView>
+  </div>
+
+  <p-footer>
+    <button type="button" pButton icon="pi pi-close" (click)="displayDetail=false" label="Close" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

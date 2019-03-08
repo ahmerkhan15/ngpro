@@ -5,7 +5,7 @@ import { DialogModule } from 'primeng/dialog';
 import { TabViewModule } from 'primeng/tabview';
 import { CodeHighlighterModule } from 'primeng/codehighlighter';
 import { CommonModule } from '@angular/common';
-import { DataTableModule } from 'primeng/primeng';
+import { DataTableModule } from 'primeng/datatable';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
@@ -15,14 +15,16 @@ import { MessageModule } from 'primeng/message';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import {SpinnerModule} from 'primeng/spinner';
+import {ToastModule} from 'primeng/toast';
+
 
 @NgModule({
-    imports: [DataViewModule,
+    imports: [DataViewModule,ToastModule,
         PanelModule,
         DialogModule,
         TabViewModule,
         CodeHighlighterModule, DataTableModule, TableModule, ButtonModule, DropdownModule, CardModule, InputTextModule, PasswordModule, DataViewModule, PanelModule, DialogModule, TabViewModule, CodeHighlighterModule, MessagesModule, MessagesModule, MessageModule,SpinnerModule],
-    exports: [DataViewModule, DataViewModule,
+    exports: [DataViewModule,ToastModule, DataViewModule,
         PanelModule,
         DialogModule,
         TabViewModule,

@@ -21,6 +21,7 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { LoginComponent } from './login/login.component';
 import { CartComponent } from './cart/cart.component';
 import { SignupComponent } from './signup/signup.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SignupComponent } from './signup/signup.component';
     ItemDetailComponent,
     LoginComponent,
     CartComponent,
-    SignupComponent
+    SignupComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
