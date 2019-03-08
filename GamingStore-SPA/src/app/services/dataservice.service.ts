@@ -20,6 +20,6 @@ export class DataserviceService {
   }
 
   GetProductByID(prodid){
-    return this.http.get(this.baseUrl+'Products?id='+prodid);
+    return this.http.get(this.baseUrl+'Products/GetById?id='+prodid);
   }
 }

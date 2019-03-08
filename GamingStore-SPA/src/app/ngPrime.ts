@@ -16,15 +16,16 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import {SpinnerModule} from 'primeng/spinner';
 import {ToastModule} from 'primeng/toast';
+import {LightboxModule} from 'primeng/lightbox';
 
 
 @NgModule({
-    imports: [DataViewModule,ToastModule,
+    imports: [DataViewModule,ToastModule,LightboxModule,
         PanelModule,
         DialogModule,
         TabViewModule,
         CodeHighlighterModule, DataTableModule, TableModule, ButtonModule, DropdownModule, CardModule, InputTextModule, PasswordModule, DataViewModule, PanelModule, DialogModule, TabViewModule, CodeHighlighterModule, MessagesModule, MessagesModule, MessageModule,SpinnerModule],
-    exports: [DataViewModule,ToastModule, DataViewModule,
+    exports: [DataViewModule,ToastModule, DataViewModule,LightboxModule,
         PanelModule,
         DialogModule,
         TabViewModule,
