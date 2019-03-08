@@ -47,9 +47,21 @@ namespace GamingStore.API.Services
             }
             else
             {
-                //objOrder.customerID = cstID;
-                objOrder.total += price;
-                objOrder.items.Add(new OrderItems { orderID = objOrder.orderID, prodID = prodID, quantity = quantity });
+                //Updating Quantity if old product already exists
+                var oldProduct = objOrder.items.Where(d => d.prodID == prodID).FirstOrDefault();
+                if (oldProduct != null)
+                {
+                    objOrder.items.Remove(oldProduct);
+                    oldProduct.quantity += quantity;
+                    objOrder.items.Add(oldProduct);
+                }
+                else
+                {
+                    //Adding new Product
+                    objOrder.items.Add(new OrderItems { orderID = objOrder.orderID, prodID = prodID, quantity = quantity });
+                }
+
+                objOrder.total += price;                
                 await _orders.ReplaceOneAsync(x => x.sessionID == sessionID, objOrder);
             }
             return objOrder;
